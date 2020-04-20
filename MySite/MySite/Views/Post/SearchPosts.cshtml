@@ -1,0 +1,72 @@
+﻿@model IEnumerable<MySite.Models.Post>
+
+@{
+    ViewData["Title"] = "HoT News";
+}
+
+@if (Model.Count() == 0)
+{
+    <h4>По запросу "@ViewBag.SearchTitle" ничего не найдено.</h4>
+}
+else
+{
+    <h4>Результат по запросу "@ViewBag.SearchTitle":</h4>
+    <hr />
+}
+
+@{
+    int numOfComments = 0;
+    int counter = 0;
+}
+
+@foreach (var post in Model.Reverse())
+{
+    if (counter != 0)
+    {
+        <hr />
+    }
+
+    numOfComments = 0;
+    <div style="display: flex;margin-bottom:10px;">
+        <div>
+            @if (post.Image != null)
+            {
+                <a href="/api/viewPost/@post.Id"><img class="img-small" src="data:image/jpg;base64,@Convert.ToBase64String(post.Image)" /></a>
+            }
+        </div>
+        <div class="title-main">
+            <div>
+                <a class="a-title" href="/api/viewPost/@post.Id"><h3 class="a-title">@post.Title</h3></a>
+            </div>
+            <div>
+                <div class="buttons-block">
+                    @if (User.IsInRole("admin"))
+                    {
+                        <input class="button-1" type="button" value="Edit" onClick='location.href="/api/editPost/@post.Id"'>
+                        <input class="button-1" type="button" value="Delete" onClick='location.href="/api/deletePost/@post.Id"'>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+        <div class="data">
+            @if (post.Comments != null)
+            {
+                numOfComments = post.Comments.Count();
+            }
+
+            <a href="/api/viewPost/@post.Id#comments">Комментарии(@numOfComments)</a>
+            <time>@post.Date.ToLongDateString(), @post.Date.ToShortTimeString()</time>
+        </div>
+    </div>
+    counter++;
+}
+
+@if (User.IsInRole("admin"))
+{
+    <input class="new-post-button" type="button" value="+" onClick='location.href="/api/newPost"'>
+}
+
+
+

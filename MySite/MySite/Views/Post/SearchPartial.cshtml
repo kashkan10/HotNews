@@ -1,0 +1,24 @@
+﻿@model IEnumerable<MySite.Models.Post>
+
+@{ int counter = 0;}
+@foreach (var post in Model)
+{
+    if (counter != 0)
+    {
+        <hr />
+    }
+    <div style="display: flex;margin-bottom:10px;">
+        <div>
+            @if (post.Image != null)
+            {
+                <a href="/api/viewPost/@post.Id"><img class="search-img-small" src="data:image/jpg;base64,@Convert.ToBase64String(post.Image)" /></a>
+            }
+        </div>
+        <div class="search-title-main">
+            <div>
+                <a class="a-title" href="/api/viewPost/@post.Id"><h3 class="a-title" style="font-size:20px;">@post.Title</h3></a>
+            </div>
+        </div>
+    </div>
+    counter++;
+}

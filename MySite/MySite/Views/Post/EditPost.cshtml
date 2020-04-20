@@ -1,0 +1,52 @@
+﻿@model MySite.Models.Post
+
+@{
+    ViewData["Title"] = "EditPost";
+}
+
+<h1>Edit Post</h1>
+<hr />
+
+@using (Html.BeginForm("EditPost", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="hidden" value="@Model.Id" name="Id" />
+    <div>
+        <h2>Title</h2>
+        <p id="Title" name="Title"><input class="title-input" name="Title" value="@Model.Title" /></p>
+    </div>
+
+    <div>
+        <h2>Time</h2>
+        <p name="Date"><input name="Date" value="@Model.Date" /></p>
+    </div>
+
+    <div>
+        <h2>Text</h2>
+        <textarea id="Text" name="Text">@Model.Text</textarea>
+    </div>
+
+    @if (Model.Image != null)
+    {
+        <img class="img-small" src="data:image/jpg;base64,@Convert.ToBase64String(Model.Image)" />
+    }
+    else
+    {
+        <img class="img-small" src="data:image/jpg;base64," />
+    }
+
+    <div>
+        <input name="uploadImage" type="file" />
+    </div>
+
+    <div class="buttons-block">
+        <input class="button-1" type="submit" value="Save" />
+        <input class="button-1" type="button" value="Back" onClick='location.href="/api/allPosts"'>
+    </div>
+}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        ClassicEditor.create(document.querySelector('#Text'));
+    });
+</script>
+

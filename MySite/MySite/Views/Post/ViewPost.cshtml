@@ -1,0 +1,58 @@
+﻿@model MySite.Models.Post
+
+@{
+    ViewData["Title"] = "HoT News";
+
+    int numOfComments = 0;
+    string commentsTitle = "Комментарии";
+    if (Model.Comments.Count() != 0)
+    {
+        numOfComments = Model.Comments.Count();
+        commentsTitle = "Комментарии";
+    }
+}
+
+<h1>@Model.Title</h1>
+<div class="post-title-info">
+    <time class="data">@Model.Date.ToLongDateString(), @Model.Date.ToShortTimeString()</time>
+    <a href="#comments">Комментарии(@numOfComments)</a>
+</div>
+<div id="postText">
+    <hr />
+    @Html.Raw(Model.Text)
+</div>
+<div class="buttons-block">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <input class="button-1" type="button" value="Edit" onClick='location.href="/api/editPost/@Model.Id"'>
+    }
+
+    <input class="button-1" type="button" value="Back" onClick='location.href="/api/allPosts"'>
+</div>
+<hr />
+<div> <a name="comments"><h4>@commentsTitle</h4></a></div>
+<form class="new-comment" asp-action="GetComments" asp-controller="Post" method="post" id="sendComment">
+    <input type="hidden" value="@Model.Id" name="postId" />
+    <textarea class="nickName-field" placeholder="Ник/ФИО(не обязательно)" name="nickName"></textarea>
+    <textarea class="commentText-field" required placeholder="Ваш комментарий..." name="text"></textarea>
+    <input class="comment-button" type="submit" value="Добавить" />
+</form>
+
+<div id="comments">
+    @await Html.PartialAsync("GetComments", Model.Comments.Where(comments => comments.ParentCommentId == null).ToList())
+</div>
+
+<script>
+    $("#sendComment").submit(function (event) {
+        event.preventDefault();
+        $.post('/api/getComments', $("#sendComment").serialize(),
+                function() {
+                        $('#comments').load('/api/getComments/@Model.Id');
+            });
+            $('#sendComment')[0].reset();
+    });
+
+    var figures = $('figure').toArray();
+    figures.forEach(element => element.style.display = 'flex')
+    figures.forEach(element => element.style.justifyContent = 'center')
+</script>

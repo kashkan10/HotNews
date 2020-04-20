@@ -1,0 +1,200 @@
+﻿.button-2 {
+    border-color: lightyellow;
+    background-color: lightyellow;
+    color: brown;
+    display: flex;
+    margin: 5px;
+    font-family: cursive;
+}
+
+.button-1 {
+    border-color: brown;
+    background-color: brown;
+    color:white;
+    display: flex;
+    margin: 5px;
+    font-family: cursive;
+}
+
+.submit-button-1 {
+    border-color: red;
+    background-color: red;
+    color: white;
+    display: flex;
+    margin: 5px;
+    font-family: cursive;
+}
+
+h3 {
+    font-family: initial;
+    color: black;
+    font-size: 30px;
+}
+
+.img-small {
+    width: 200px;
+    margin: 30px;
+}
+
+.buttons-block {
+    padding-top: 15px;
+    display: inline-flex;
+}
+
+.new-post-button {
+    border-color: brown;
+    background-color: brown;
+    color: yellow;
+    position: absolute;
+    top: 80px;
+    left: 10px;
+}
+
+.data {
+    margin-top: auto;
+    margin-bottom: 15px;
+    margin-right:15px;
+    margin-left: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+}
+
+.title-main {
+    margin: 30px;
+    margin-right: -15px;
+    width: 75%;
+}
+
+.a-title{
+    color:black;
+}
+.a-title:hover{
+    text-decoration:none;
+    color:darkblue;
+}
+
+.title-input {
+    width: 100%;
+}
+
+.upload-input{
+    padding-top:15px;
+}
+
+.footer-text {
+    display: flex;
+    justify-content: center;
+    color: yellow;
+}
+
+header {
+    background-color: brown;
+    padding: 15px;
+}
+
+.header-text {
+    display: inline-block;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    color: yellow;
+}
+
+.header-text:hover {
+    text-decoration: none;
+    color: yellow;
+}
+
+.log-block-buttons {
+    position: absolute;
+    display: inline-flex;
+    right: 20px;
+}
+
+.post-title-info {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.nickName-field {
+    padding: 5px 11px;
+    border-width: 1px;
+    border-radius: 5px;
+    resize: none;
+    outline: none;
+    height: 45px;
+    width: 250px;
+    margin-bottom: 10px;
+}
+
+.commentText-field {
+    padding: 5px 11px;
+    border-width: 1px;
+    border-radius: 5px;
+    resize: none;
+    outline: none;
+    height: 145px;
+}
+
+.comment-button {
+    width: 100px;
+    margin-top: 10px;
+    border-radius: 10px;
+    outline: none;
+}
+
+.new-comment{
+    margin-top:20px;
+    display:flex;
+    flex-direction:column;
+}
+
+.new-comment-hidden {
+    display: none;
+}
+
+.comment-head{
+    font-family:cursive;
+}
+
+.comment-head time {
+    font-size: x-small;
+    margin-left: 5px;
+}
+
+.comment-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-body text {
+    font-style: italic;
+}
+
+.search-title-main {
+    margin: 10px;
+}
+
+.search-img-small {
+    width: 100px;
+    margin: 10px;
+}
+
+.search-form{
+    margin-top:5px;
+    margin-right:100px;
+}
+
+.search-result-block {
+    max-width: 500px;
+    right: 20px;
+    background-color: lightyellow;
+    position: absolute;
+    overflow: auto;
+    max-height: 400px;
+    margin-top: 15px;
+}

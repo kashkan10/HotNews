@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,  user-scalable=no" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/MyStyles.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/ckeditor5/ckeditor.js"></script>
+    @RenderSection("Scripts", required: false)
+</head>
+<body style="background-image:url(/bg.jpg)">
+    <header>
+        <div class="container">
+            <a class="header-text" id="header-text" href="/api/allPosts">@ViewData["Title"] - ТУпа Охуевший Кантент</a>
+            <div class="log-block-buttons">
+                <div>
+                    <form class="search-form" action="/api/search" method="get" id="search-form">
+                        <input type="search" onsearch="ClearSearchResult()"  required name="title" placeholder="Поиск" id="search-input">
+                        <input type="submit" value="Найти" />
+                    </form>
+                </div>
+
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <input class="button-2" type="button" value="Login" onClick='location.href="/login"'>
+                }
+                else
+                {
+                    <input class="button-2" type="button" value="Logout" onClick='location.href="/logout"'>
+                }
+
+            </div>
+            <div class="search-result-block" id="search-result"></div>
+            <script>
+                $('#search-input').keyup(function () {
+                    if ($('#search-input').val() == '') {
+                        ClearSearchResult();
+                    }
+                    else {
+                        var block = document.getElementById('search-result');
+                        block.style.border = 'outset';
+                        $('#search-result').load('/api/searchPartial/' + $('#search-input').val());
+                    }
+                });
+
+                function ClearSearchResult() {
+                    var block = document.getElementById('search-result');
+                    block.style.border = '';
+                    $("#search-result").empty();
+                }
+
+                $('html').click(function () {
+                    ClearSearchResult();
+                });
+            </script>
+        </div>
+    </header>
+
+    <div class="container" id="mainContainer" style="background-color:white">
+        <div>
+        </div>
+        <main role="main" class="pb-3" id="main">
+            @RenderBody()
+        </main>
+        <div></div>
+    </div>
+    <footer class="border-top footer text-muted" style="background-color:brown">
+        <div class="footer-text">
+            &copy; 2020 - Новостной портал
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,40 @@
+﻿@model MySite.Models.Post
+
+@{
+    ViewData["Title"] = "NewPost";
+}
+
+<h1>New Post</h1>
+<hr />
+@using (Html.BeginForm("NewPost", "Post",
+FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        <h2>Title</h2>
+        <p id="Title" name="Title"><input class="title-input" name="Title" /></p>
+    </div>
+
+    <div>
+        <h2>Time</h2>
+        <p name="Date"><input name="Date" value="@DateTime.Now" /></p>
+    </div>
+
+    <div>
+        <h2>Text</h2>
+        <textarea id="Text" name="Text"></textarea>
+    </div>
+    <div class="upload-input">
+        <input name="uploadImage" type="file" />
+    </div>
+    <div class="buttons-block">
+        <input class="button-1" type="submit" value="Add" />
+        <input class="button-1" type="button" value="Back" onClick='location.href="/api/allPosts'>
+    </div>
+}
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        ClassicEditor.create(document.querySelector('#Text'));
+    });
+</script>

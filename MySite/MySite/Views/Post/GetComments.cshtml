@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MySite.Models.Comment>
+
+@{ int num = 0;}
+@foreach (var comment in Model)
+{
+    <hr />
+    <div>
+        <div class="comment-head">
+            <text>@comment.Nickname</text>
+            <time>@comment.Date.ToLongDateString(), @comment.Date.ToShortTimeString()</time>
+        </div>
+
+        <div class="comment-body">
+            <text>@comment.Text</text>
+            <a href="javascript:show('hidden-сomment-form', @num)">Ответить</a>
+        </div>
+
+        <div class="hidden-сomment-form" style="display:none">
+            <form class="new-comment" asp-action="GetComments" asp-controller="Post" method="post" id="sendInComment-@num">
+                <input type="hidden" value="@comment.PostId" name="PostId" />
+                <input type="hidden" value="@comment.Id" name="ParentCommentId" />
+                <textarea class="nickName-field" placeholder="Ник/ФИО(не обязательно)" name="nickName"></textarea>
+                <textarea class="commentText-field" required placeholder="Ваш комментарий..." name="text"></textarea>
+                <input class="comment-button" type="submit" value="Ответить" />
+            </form>
+        </div>
+        <script>
+                $('#sendInComment-@num').submit(function (event) {
+                    // Предотвращаем обычную отправку формы
+                    event.preventDefault();
+                    $.post('/api/getComments', $('#sendInComment-@num').serialize(),
+                        function () {
+                            $('#comments').load('/api/getComments/@comment.PostId');
+
+                            $('#sendInComment-@num').reset();
+                        });
+                });
+        </script>
+        @if (User.IsInRole("admin"))
+        {
+            <input style="width:65px;" class="button-1" type="button" value="Delete" onClick='location.href="/api/deleteComment/@comment.Id"'>
+        }
+
+        @foreach (var child in comment.ChildComments)
+        {
+            <hr />
+            <div style="margin-left:35px;">
+                <div class="comment-head">
+                    <text>@child.Nickname</text>
+                    <time>@child.Date.ToLongDateString(), @child.Date.ToShortTimeString()</time>
+                </div>
+
+                <div class="comment-body">
+                    <text>@child.Text</text>
+                </div>
+
+                @if (User.IsInRole("admin"))
+                {
+                    <input style="width:70px;" class="button-1" type="button" value="Delete" onClick='location.href="/api/deleteComment/@child.Id"'>
+                }
+
+            </div>
+        }
+
+    </div>
+    num++;
+}
