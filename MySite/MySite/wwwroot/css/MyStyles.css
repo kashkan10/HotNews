@@ -3,8 +3,7 @@
     background-color: lightyellow;
     color: brown;
     display: flex;
-    margin: 5px;
-    font-family: cursive;
+    margin-top: 5px;
 }
 
 .button-1 {
@@ -13,7 +12,6 @@
     color:white;
     display: flex;
     margin: 5px;
-    font-family: cursive;
 }
 
 .submit-button-1 {
@@ -22,13 +20,11 @@
     color: white;
     display: flex;
     margin: 5px;
-    font-family: cursive;
 }
 
 h3 {
-    font-family: initial;
+    font-family:'Times New Roman';
     color: black;
-    font-size: 30px;
 }
 
 .img-small {
@@ -51,12 +47,8 @@ h3 {
 }
 
 .data {
-    margin-top: auto;
-    margin-bottom: 15px;
-    margin-right:15px;
-    margin-left: 10px;
-    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
-    white-space: nowrap;
+    float:right;
+    font-family: Times New Roman;
     display: flex;
     flex-direction: column;
 }
@@ -95,12 +87,9 @@ header {
 }
 
 .header-text {
-    display: inline-block;
-    padding-top: 0.3125rem;
-    padding-bottom: 0.3125rem;
-    margin-right: 1rem;
     font-size: 1.25rem;
     color: yellow;
+    white-space:nowrap;
 }
 
 .header-text:hover {
@@ -158,7 +147,7 @@ header {
 }
 
 .comment-head{
-    font-family:cursive;
+    font-family:Calibri;
 }
 
 .comment-head time {
@@ -185,8 +174,9 @@ header {
 }
 
 .search-form{
-    margin-top:5px;
-    margin-right:100px;
+    display:inline-flex;
+    margin-right:25px;
+    width:175px;
 }
 
 .search-result-block {
@@ -197,4 +187,17 @@ header {
     overflow: auto;
     max-height: 400px;
     margin-top: 15px;
+    z-index:100;
+}
+
+img{
+    max-width:100%;
+}
+
+p{
+    text-align:justify;
+}
+
+.back{
+    border-radius:5px;
 }

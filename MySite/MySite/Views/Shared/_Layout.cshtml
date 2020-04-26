@@ -12,64 +12,64 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/ckeditor5/ckeditor.js"></script>
     @RenderSection("Scripts", required: false)
+    <link rel="shortcut icon" href="~/icon.png" type="image/png">
 </head>
-<body style="background-image:url(/bg.jpg)">
+<body style="background-color:brown">
     <header>
         <div class="container">
-            <a class="header-text" id="header-text" href="/api/allPosts">@ViewData["Title"] - ТУпа Охуевший Кантент</a>
-            <div class="log-block-buttons">
-                <div>
-                    <form class="search-form" action="/api/search" method="get" id="search-form">
-                        <input type="search" onsearch="ClearSearchResult()"  required name="title" placeholder="Поиск" id="search-input">
-                        <input type="submit" value="Найти" />
-                    </form>
+            <div class="row">
+                <div class="col-md-auto" style="flex-grow:2; margin-top:10px;">
+                    <a class="header-text" id="header-text" href="/api/allPosts"><img src="~/icon.png" style="width:35px; white-space:nowrap" /> @ViewData["Title"] - ТУпа Кантент</a>
                 </div>
-
-                @if (!User.Identity.IsAuthenticated)
-                {
-                    <input class="button-2" type="button" value="Login" onClick='location.href="/login"'>
-                }
-                else
-                {
-                    <input class="button-2" type="button" value="Logout" onClick='location.href="/logout"'>
-                }
-
-            </div>
-            <div class="search-result-block" id="search-result"></div>
-            <script>
-                $('#search-input').keyup(function () {
-                    if ($('#search-input').val() == '') {
-                        ClearSearchResult();
+                <div class="col-md-auto" style="flex-grow:1; margin-top:10px;">
+                    <form class="search-form" action="/api/search" method="get" id="search-form">
+                        <input type="search" style="border-radius:5px; outline:none" onsearch="ClearSearchResult()" required name="title" placeholder="Поиск" id="search-input">
+                        <input type="submit" style="display:none" />
+                    </form>
+                    <div class="search-result-block" id="search-result"></div>
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <input class="btn-light" style="float:right;border-radius:5px;outline:none" type="button" value="Login" onClick='location.href="/login"'>
                     }
-                    else {
+                    else
+                    {
+                        <input class="button-2" style="float:right;border-radius:5px; outline:none" type="button" value="Logout" onClick='location.href="/logout"'>
+                    }
+                </div>
+                <script>
+                    $('#search-input').keyup(function () {
+                        if ($('#search-input').val() == '') {
+                            ClearSearchResult();
+                        }
+                        else {
+                            var block = document.getElementById('search-result');
+                            block.style.border = 'outset';
+                            $('#search-result').load('/api/searchPartial/' + $('#search-input').val());
+                        }
+                    });
+
+                    function ClearSearchResult() {
                         var block = document.getElementById('search-result');
-                        block.style.border = 'outset';
-                        $('#search-result').load('/api/searchPartial/' + $('#search-input').val());
+                        block.style.border = '';
+                        $("#search-result").empty();
                     }
-                });
 
-                function ClearSearchResult() {
-                    var block = document.getElementById('search-result');
-                    block.style.border = '';
-                    $("#search-result").empty();
-                }
-
-                $('html').click(function () {
-                    ClearSearchResult();
-                });
-            </script>
+                    $('html').click(function () {
+                        ClearSearchResult();
+                    });
+                </script>
+            </div>
         </div>
     </header>
-
-    <div class="container" id="mainContainer" style="background-color:white">
+    <div class="container" id="mainContainer" style="background-color:white; border-radius:5px;">
         <div>
         </div>
-        <main role="main" class="pb-3" id="main">
+        <main role="main" id="main">
             @RenderBody()
         </main>
         <div></div>
     </div>
-    <footer class="border-top footer text-muted" style="background-color:brown">
+    <footer class="footer">
         <div class="footer-text">
             &copy; 2020 - Новостной портал
         </div>

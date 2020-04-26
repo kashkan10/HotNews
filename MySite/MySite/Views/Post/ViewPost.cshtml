@@ -12,7 +12,9 @@
     }
 }
 
-<h1>@Model.Title</h1>
+    <div style="padding-top:30px;">
+        <h2>@Model.Title</h2>
+    </div>
 <div class="post-title-info">
     <time class="data">@Model.Date.ToLongDateString(), @Model.Date.ToShortTimeString()</time>
     <a href="#comments">Комментарии(@numOfComments)</a>
@@ -24,10 +26,10 @@
 <div class="buttons-block">
     @if (User.Identity.IsAuthenticated)
     {
-        <input class="button-1" type="button" value="Edit" onClick='location.href="/api/editPost/@Model.Id"'>
+        <input class="btn-light" type="button" value="Edit" onClick='location.href="/api/editPost/@Model.Id"'>
     }
 
-    <input class="button-1" type="button" value="Back" onClick='location.href="/api/allPosts"'>
+    <input class="btn-dark back" type="button" value="Back" onClick='location.href="/api/allPosts"'>
 </div>
 <hr />
 <div> <a name="comments"><h4>@commentsTitle</h4></a></div>
@@ -38,7 +40,7 @@
     <input class="comment-button" type="submit" value="Добавить" />
 </form>
 
-<div id="comments">
+<div id="comments" style="padding-bottom:25px;">
     @await Html.PartialAsync("GetComments", Model.Comments.Where(comments => comments.ParentCommentId == null).ToList())
 </div>
 

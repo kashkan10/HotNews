@@ -11,6 +11,7 @@ using System.Web;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace MySite.Controllers
 {
@@ -194,6 +195,13 @@ namespace MySite.Controllers
             var dbPosts = await context.Posts.Where(post => post.Title.Contains(title)).ToListAsync();
 
             return PartialView(dbPosts);
+        }
+
+        [AllowAnonymous]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel
+            { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

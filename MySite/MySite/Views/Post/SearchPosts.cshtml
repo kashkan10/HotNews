@@ -4,6 +4,7 @@
     ViewData["Title"] = "HoT News";
 }
 
+<div style="padding:10px">
 @if (Model.Count() == 0)
 {
     <h4>По запросу "@ViewBag.SearchTitle" ничего не найдено.</h4>
@@ -13,7 +14,7 @@ else
     <h4>Результат по запросу "@ViewBag.SearchTitle":</h4>
     <hr />
 }
-
+</div>
 @{
     int numOfComments = 0;
     int counter = 0;
@@ -27,26 +28,24 @@ else
     }
 
     numOfComments = 0;
-    <div style="display: flex;margin-bottom:10px;">
+<div class="row" style="padding:10px">
+    <div class="col-md-3">
+        @if (post.Image != null)
+        {
+            <a href="/api/viewPost/@post.Id"><img src="data:image/jpg;base64,@Convert.ToBase64String(post.Image)" /></a>
+        }
+    </div>
+    <div class="col-md" style="margin:10px">
         <div>
-            @if (post.Image != null)
-            {
-                <a href="/api/viewPost/@post.Id"><img class="img-small" src="data:image/jpg;base64,@Convert.ToBase64String(post.Image)" /></a>
-            }
+            <a class="a-title" href="/api/viewPost/@post.Id"><h3 href="/api/viewPost/@post.Id" class="a-title">@post.Title</h3></a>
         </div>
-        <div class="title-main">
-            <div>
-                <a class="a-title" href="/api/viewPost/@post.Id"><h3 class="a-title">@post.Title</h3></a>
-            </div>
-            <div>
-                <div class="buttons-block">
-                    @if (User.IsInRole("admin"))
-                    {
-                        <input class="button-1" type="button" value="Edit" onClick='location.href="/api/editPost/@post.Id"'>
-                        <input class="button-1" type="button" value="Delete" onClick='location.href="/api/deletePost/@post.Id"'>
-                    }
-
-                </div>
+        <div>
+            <div class="buttons-block">
+                @if (User.IsInRole("admin"))
+                {
+                    <input class="button-1" type="button" value="Edit" onClick='location.href="/api/editPost/@post.Id"'>
+                    <input class="button-1" type="button" value="Delete" onClick='location.href="/api/deletePost/@post.Id"'>
+                }
 
             </div>
         </div>
@@ -56,10 +55,11 @@ else
                 numOfComments = post.Comments.Count();
             }
 
-            <a href="/api/viewPost/@post.Id#comments">Комментарии(@numOfComments)</a>
+            <a style="text-align:end" href="/api/viewPost/@post.Id#comments">Комментарии(@numOfComments)</a>
             <time>@post.Date.ToLongDateString(), @post.Date.ToShortTimeString()</time>
         </div>
     </div>
+</div>
     counter++;
 }
 

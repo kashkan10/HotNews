@@ -8149,11 +8149,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Tanya\\source\\repos\\MySite\\MySite\\MySite.csproj",
+      "projectUniqueName": "C:\\Users\\Tanya\\source\\MySite\\MySite\\MySite.csproj",
       "projectName": "MySite",
-      "projectPath": "C:\\Users\\Tanya\\source\\repos\\MySite\\MySite\\MySite.csproj",
+      "projectPath": "C:\\Users\\Tanya\\source\\MySite\\MySite\\MySite.csproj",
       "packagesPath": "C:\\Users\\Tanya\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Tanya\\source\\repos\\MySite\\MySite\\obj\\",
+      "outputPath": "C:\\Users\\Tanya\\source\\MySite\\MySite\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

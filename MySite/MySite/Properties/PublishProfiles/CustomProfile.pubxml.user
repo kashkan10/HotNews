@@ -6,12 +6,12 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword />
-    <_PublishTargetUrl>ftp://hotscovid19.somee.com/www.hotscovid19.somee.com</_PublishTargetUrl>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAARK3HsqW17k6lHm7w/KQQhgAAAAACAAAAAAAQZgAAAAEAACAAAACmFuROdK9hVyMX0scicX5NAIcys+7TaRghgru/VkUjvgAAAAAOgAAAAAIAACAAAAD3qpKgfAHKcpb6Smu/60fmrsaTFhHvrMEzaqxrV9cIySAAAACMuq0Xa1ZRowAa+CNvz9tWHWTnuVywNP2pZqEwGUYG6EAAAABfOCONCwCBepzf4DkCCYT1m355XaRqHI7vW0i4vb1Flp6cKA41NpzdDrfUcLg1XNqv4QRy1VQfP6yJC36LNPj+</EncryptedPassword>
+    <_PublishTargetUrl>ftp://hotscovid.somee.com/www.hotscovid.somee.com</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
-      <publishTime>04/01/2020 14:50:37</publishTime>
+      <publishTime>04/23/2020 17:50:13</publishTime>
     </File>
     <File Include="appsettings.json">
       <publishTime>04/08/2020 20:03:12</publishTime>
@@ -200,25 +200,25 @@
       <publishTime>09/20/2019 22:25:54</publishTime>
     </File>
     <File Include="MySite.deps.json">
-      <publishTime>04/16/2020 14:50:36</publishTime>
+      <publishTime>04/26/2020 03:17:23</publishTime>
     </File>
     <File Include="MySite.dll">
-      <publishTime>04/16/2020 14:50:32</publishTime>
+      <publishTime>04/26/2020 03:17:20</publishTime>
     </File>
     <File Include="MySite.exe">
-      <publishTime>04/16/2020 14:50:32</publishTime>
+      <publishTime>04/26/2020 03:17:20</publishTime>
     </File>
     <File Include="MySite.pdb">
-      <publishTime>04/16/2020 14:50:32</publishTime>
+      <publishTime>04/26/2020 03:17:20</publishTime>
     </File>
     <File Include="MySite.runtimeconfig.json">
-      <publishTime>04/15/2020 02:33:13</publishTime>
+      <publishTime>04/22/2020 23:56:39</publishTime>
     </File>
     <File Include="MySite.Views.dll">
-      <publishTime>04/16/2020 14:50:35</publishTime>
+      <publishTime>04/26/2020 03:17:22</publishTime>
     </File>
     <File Include="MySite.Views.pdb">
-      <publishTime>04/16/2020 14:50:35</publishTime>
+      <publishTime>04/26/2020 03:17:22</publishTime>
     </File>
     <File Include="Newtonsoft.Json.dll">
       <publishTime>01/22/2019 17:16:39</publishTime>
@@ -335,16 +335,10 @@
       <publishTime>08/14/2019 23:20:54</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>04/16/2020 14:50:36</publishTime>
-    </File>
-    <File Include="wwwroot/1.png">
-      <publishTime>04/14/2020 18:07:56</publishTime>
+      <publishTime>04/26/2020 03:17:23</publishTime>
     </File>
     <File Include="wwwroot/bg.jpg">
       <publishTime>04/15/2020 17:59:33</publishTime>
-    </File>
-    <File Include="wwwroot/brick_045.jpg">
-      <publishTime>04/15/2020 18:04:07</publishTime>
     </File>
     <File Include="wwwroot/ckeditor5/ckeditor.js">
       <publishTime>03/24/2020 18:58:44</publishTime>
@@ -557,16 +551,16 @@
       <publishTime>03/24/2020 18:58:44</publishTime>
     </File>
     <File Include="wwwroot/css/MyStyles.css">
-      <publishTime>04/15/2020 18:17:53</publishTime>
+      <publishTime>04/24/2020 23:50:02</publishTime>
     </File>
     <File Include="wwwroot/css/site.css">
       <publishTime>04/07/2020 23:43:02</publishTime>
     </File>
-    <File Include="wwwroot/favicon.ico">
-      <publishTime>04/01/2020 14:50:37</publishTime>
+    <File Include="wwwroot/icon.png">
+      <publishTime>04/23/2020 01:17:24</publishTime>
     </File>
-    <File Include="wwwroot/html5.png">
-      <publishTime>04/02/2020 00:13:20</publishTime>
+    <File Include="wwwroot/icon2.png">
+      <publishTime>04/23/2020 01:17:47</publishTime>
     </File>
     <File Include="wwwroot/js/site.js">
       <publishTime>04/14/2020 22:15:37</publishTime>
