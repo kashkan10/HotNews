@@ -12,15 +12,39 @@ function show(name, num) {
         div.style.display = ''
 }
 
-function Load(name, num) {
-    alert('HELLO');
-    $(name).submit(function (event) {
-        // Предотвращаем обычную отправку формы
-        event.preventDefault();
-        $.post('/api/getComments', $(name).serialize(),
-            function () {
-                $('#comments').load('/api/getComments/' + num);
-                $(name).reset();
-            });
-    });
+//function Load(name, num) {
+//    alert('HELLO');
+//    $(name).submit(function (event) {
+//        // Предотвращаем обычную отправку формы
+//        event.preventDefault();
+//        $.post('/api/getComments', $(name).serialize(),
+//            function () {
+//                $('#comments').load('/api/getComments/' + num);
+//                $(name).reset();
+//            });
+//    });
+//}
+
+function anonimCheck(num = -1) {
+    if (num == -1) {
+        var chbox = document.getElementById('anonim-checkbox');
+        var nickField = document.getElementById('nickname');
+    }
+    else {
+        var chbox = document.getElementById('anonim-checkbox-' + num);
+        var nickField = document.getElementById('nickname-' + num);
+    }
+
+    if (chbox.checked) {
+        nickField.setAttribute('value', 'Аноним');
+        nickField.style.display = 'none';
+    }
+    else {
+        $.get('/getUser', function (data) {
+            if (data == undefined)
+                data = '';
+            nickField.setAttribute('value', data);
+            nickField.style.display = '';
+        });
+    }
 }

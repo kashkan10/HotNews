@@ -10,7 +10,7 @@ using MySite.Models;
 namespace MySite.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20200413230430_Init")]
+    [Migration("20200427012845_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -113,6 +113,9 @@ namespace MySite.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Nickname")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
@@ -130,6 +133,7 @@ namespace MySite.Migrations
                         {
                             Id = 1,
                             Email = "admin@mail.ru",
+                            Nickname = "kashkan10",
                             Password = "123456",
                             RoleId = 1
                         });

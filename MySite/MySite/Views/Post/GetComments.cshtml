@@ -9,37 +9,41 @@
             <text style="font-weight:bold">@comment.Nickname</text>
             <time>@comment.Date.ToLongDateString(), @comment.Date.ToShortTimeString()</time>
         </div>
-
-        <div class="comment-body">
-            <text>@comment.Text</text>
-            <a href="javascript:show('hidden-сomment-form', @num)">Ответить</a>
+        <div>
+            <p class="comment-body">@comment.Text</p>
         </div>
-
-        <div class="hidden-сomment-form" style="display:none">
+        <div class="hidden-сomment-form"  style="display:none">
             <form class="new-comment" asp-action="GetComments" asp-controller="Post" method="post" id="sendInComment-@num">
                 <input type="hidden" value="@comment.PostId" name="PostId" />
                 <input type="hidden" value="@comment.Id" name="ParentCommentId" />
-                <textarea class="nickName-field" placeholder="Ник/ФИО(не обязательно)" name="nickName"></textarea>
+                <div>
+                    <input class="nickName-field" id="nickname-@num" placeholder="Ник/ФИО" name="nickName" value="@User.Identity.Name" />
+                    <label>
+                        <input class="chkbox" id="anonim-checkbox-@num" type="checkbox" value="" onchange="anonimCheck(@num)">
+                        Анонимно
+                    </label>
+                </div>
                 <textarea class="commentText-field" required placeholder="Ваш комментарий..." name="text"></textarea>
                 <input class="comment-button" type="submit" value="Ответить" />
             </form>
         </div>
         <script>
-                $('#sendInComment-@num').submit(function (event) {
-                    // Предотвращаем обычную отправку формы
-                    event.preventDefault();
-                    $.post('/api/getComments', $('#sendInComment-@num').serialize(),
-                        function () {
-                            $('#comments').load('/api/getComments/@comment.PostId');
-
-                            $('#sendInComment-@num').reset();
+            $('#sendInComment-@num').submit(function (event) {
+                event.preventDefault();
+                $.post('/getComments', $('#sendInComment-@num').serialize(),
+                    function () {
+                        $('#comments').load('/getComments/@comment.PostId');
+                        $('#sendInComment-@num').reset();
                         });
                 });
         </script>
-        @if (User.IsInRole("admin"))
-        {
-            <input style="width:65px;" class="button-1" type="button" value="Delete" onClick='location.href="/api/deleteComment/@comment.Id"'>
-        }
+        <div class="btn-group-vertical">
+            <button type="button" style="padding-left:0;" class="btn btn-link" onclick="javascript:show('hidden-сomment-form', @num)">Ответить</button>
+            @if (User.IsInRole("admin"))
+            {
+                <input class="btn btn-warning btn-sm" type="button" value="Delete" onClick='location.href="/deleteComment/@comment.Id"'>
+            }
+        </div>
 
         @foreach (var child in comment.ChildComments)
         {
@@ -56,7 +60,7 @@
 
                 @if (User.IsInRole("admin"))
                 {
-                    <input style="width:70px;" class="button-1" type="button" value="Delete" onClick='location.href="/api/deleteComment/@child.Id"'>
+                    <input class="btn btn-warning btn-sm" type="button" value="Delete" onClick='location.href="/deleteComment/@child.Id"'>
                 }
 
             </div>

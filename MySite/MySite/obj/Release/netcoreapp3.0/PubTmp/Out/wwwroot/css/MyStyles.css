@@ -29,7 +29,7 @@ h3 {
 
 .img-small {
     width: 200px;
-    margin: 30px;
+    margin-bottom: 10px;
 }
 
 .buttons-block {
@@ -48,7 +48,7 @@ h3 {
 
 .data {
     float:right;
-    font-family: Times New Roman;
+    font-family: Calibri;
     display: flex;
     flex-direction: column;
 }
@@ -71,8 +71,9 @@ h3 {
     width: 100%;
 }
 
-.upload-input{
-    padding-top:15px;
+.upload-input {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .footer-text {
@@ -113,11 +114,11 @@ header {
     padding: 5px 11px;
     border-width: 1px;
     border-radius: 5px;
-    resize: none;
     outline: none;
-    height: 45px;
-    width: 250px;
+    height: 30px;
+    width: 150px;
     margin-bottom: 10px;
+    margin-right:10px;
 }
 
 .commentText-field {
@@ -156,12 +157,8 @@ header {
 }
 
 .comment-body {
-    display: flex;
-    flex-direction: column;
-}
-
-.comment-body text {
     font-style: italic;
+    margin-bottom: 0;
 }
 
 .search-title-main {
@@ -184,10 +181,11 @@ header {
     right: 20px;
     background-color: lightyellow;
     position: absolute;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     max-height: 400px;
     margin-top: 15px;
-    z-index:100;
+    z-index: 100;
 }
 
 img{
@@ -200,4 +198,8 @@ p{
 
 .back{
     border-radius:5px;
+}
+
+.sm-margin-bot{
+    margin-bottom:10px;
 }

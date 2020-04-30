@@ -12,9 +12,7 @@
     }
 }
 
-    <div style="padding-top:30px;">
-        <h2>@Model.Title</h2>
-    </div>
+    <h2>@Model.Title</h2>
 <div class="post-title-info">
     <time class="data">@Model.Date.ToLongDateString(), @Model.Date.ToShortTimeString()</time>
     <a href="#comments">Комментарии(@numOfComments)</a>
@@ -23,33 +21,38 @@
     <hr />
     @Html.Raw(Model.Text)
 </div>
-<div class="buttons-block">
+<div class="btn-block">
+    <input class="btn-danger back" type="button" value="Назад" onClick='location.href="/allPosts"'>
     @if (User.Identity.IsAuthenticated)
     {
-        <input class="btn-light" type="button" value="Edit" onClick='location.href="/api/editPost/@Model.Id"'>
+        <input class="btn-warning back" type="button" value="Edit" onClick='location.href="/editPost/@Model.Id"'>
     }
-
-    <input class="btn-dark back" type="button" value="Back" onClick='location.href="/api/allPosts"'>
 </div>
 <hr />
 <div> <a name="comments"><h4>@commentsTitle</h4></a></div>
 <form class="new-comment" asp-action="GetComments" asp-controller="Post" method="post" id="sendComment">
     <input type="hidden" value="@Model.Id" name="postId" />
-    <textarea class="nickName-field" placeholder="Ник/ФИО(не обязательно)" name="nickName"></textarea>
+    <div>
+        <input class="nickName-field" id="nickname" placeholder="Ник/ФИО" name="nickName" value="@User.Identity.Name" />
+        <label>
+            <input class="chkbox" id="anonim-checkbox" type="checkbox" value="" onchange="anonimCheck()">
+            Анонимно
+        </label>
+    </div>
     <textarea class="commentText-field" required placeholder="Ваш комментарий..." name="text"></textarea>
     <input class="comment-button" type="submit" value="Добавить" />
 </form>
 
-<div id="comments" style="padding-bottom:25px;">
+<div id="comments">
     @await Html.PartialAsync("GetComments", Model.Comments.Where(comments => comments.ParentCommentId == null).ToList())
 </div>
 
 <script>
     $("#sendComment").submit(function (event) {
         event.preventDefault();
-        $.post('/api/getComments', $("#sendComment").serialize(),
+        $.post('/getComments', $("#sendComment").serialize(),
                 function() {
-                        $('#comments').load('/api/getComments/@Model.Id');
+                        $('#comments').load('/getComments/@Model.Id');
             });
             $('#sendComment')[0].reset();
     });

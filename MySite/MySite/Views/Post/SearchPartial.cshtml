@@ -7,18 +7,18 @@
     {
         <hr />
     }
-<div class="row">
+    <div class="row">
         <div class="col-3">
             @if (post.Image != null)
             {
-                <a href="/api/viewPost/@post.Id"><img class="search-img-small" src="data:image/jpg;base64,@Convert.ToBase64String(post.Image)" /></a>
+                <a href="/viewPost/@post.Id"><img class="search-img-small" src="data:image/jpg;base64,@Convert.ToBase64String(post.Image)" /></a>
             }
         </div>
         <div class="col">
             <div>
-                <a class="a-title" href="/api/viewPost/@post.Id"><h3 class="a-title" style="font-size:10px;padding-top:10px;">@post.Title</h3></a>
+                <a class="a-title" href="/viewPost/@post.Id"><h3 class="a-title" style="font-size:15px;padding-top:10px;">@post.Title</h3></a>
             </div>
         </div>
-</div>
+    </div>
     counter++;
 }

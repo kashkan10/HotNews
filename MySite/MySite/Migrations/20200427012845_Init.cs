@@ -72,6 +72,7 @@ namespace MySite.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(nullable: true),
+                    Nickname = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
                     RoleId = table.Column<int>(nullable: true)
                 },
@@ -98,8 +99,8 @@ namespace MySite.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "Email", "Password", "RoleId" },
-                values: new object[] { 1, "admin@mail.ru", "123456", 1 });
+                columns: new[] { "Id", "Email", "Nickname", "Password", "RoleId" },
+                values: new object[] { 1, "admin@mail.ru", "kashkan10", "123456", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_ParentCommentId",

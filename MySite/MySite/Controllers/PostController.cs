@@ -12,10 +12,10 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace MySite.Controllers
 {
-    [Route("api")]
     public class PostController : Controller
     {
         private readonly ApplicationContext context;
@@ -23,12 +23,14 @@ namespace MySite.Controllers
         public PostController(ApplicationContext context)
         {
             this.context = context;
+            CultureInfo.CurrentCulture = new CultureInfo("ru-RU");
         }
 
         [Route("allPosts")]
         [HttpGet]
         public async Task<IActionResult> AllPosts()
         {
+            ViewBag.User = User.Identity;
             ViewBag.Comments = context.Comments.ToList();
             var posts = await context.Posts.ToListAsync();
             return View(posts);
@@ -60,18 +62,18 @@ namespace MySite.Controllers
             await context.Posts.AddAsync(post);
             await context.SaveChangesAsync();
 
-            return Redirect("/Post/Index");
+            return Redirect("/allPosts");
         }
 
         [Route("deletePost/{id}")]
         public async Task<IActionResult> DeletePost(int id)
         {
-            Post dbPost = context.Posts.Where(post=>post.Id == id).FirstOrDefault();
+            Post dbPost = context.Posts.Where(post => post.Id == id).FirstOrDefault();
 
             context.Posts.Remove(dbPost);
             await context.SaveChangesAsync();
 
-            return Redirect("/api/allPosts");
+            return Redirect("/allPosts");
         }
 
         [Route("editPost/{id}")]
@@ -106,7 +108,7 @@ namespace MySite.Controllers
 
             context.Posts.Update(dbPost);
             await context.SaveChangesAsync();
-            return Redirect("/api/allPosts");
+            return Redirect("/allPosts");
         }
 
         [Route("viewPost/{id}")]
@@ -137,7 +139,7 @@ namespace MySite.Controllers
             context.Comments.Remove(dbComment);
 
             await context.SaveChangesAsync();
-            return Redirect(String.Format("/api/viewPost/{0}#comments", postId));
+            return Redirect(String.Format("/viewPost/{0}#comments", postId));
         }
 
         [Route("getComments/{postId}")]
@@ -195,13 +197,6 @@ namespace MySite.Controllers
             var dbPosts = await context.Posts.Where(post => post.Title.Contains(title)).ToListAsync();
 
             return PartialView(dbPosts);
-        }
-
-        [AllowAnonymous]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel
-            { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

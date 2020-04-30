@@ -32,11 +32,11 @@ namespace MySite.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+                User user = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email || u.Nickname == model.Nickname);
                 if (user == null)
                 {
                     // добавляем пользователя в бд
-                    user = new User { Email = model.Email, Password = model.Password };
+                    user = new User { Email = model.Email, Nickname = model.Nickname, Password = model.Password };
                     Role userRole = await _context.Roles.FirstOrDefaultAsync(r => r.Name == "user");
                     if (userRole != null)
                         user.Role = userRole;
@@ -46,10 +46,20 @@ namespace MySite.Controllers
 
                     await Authenticate(user); // аутентификация
 
-                    return RedirectToAction("Index", "Post");
+                    return Redirect("/allPosts");
                 }
                 else
-                    ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                {
+                    if(user.Email == model.Email)
+                    {
+                        ModelState.AddModelError("Email", "Такой email уже зарегистрирован.");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Nickname", "Никнейм занят");
+                    }
+                }
+                   
             }
             return View(model);
         }
@@ -70,24 +80,24 @@ namespace MySite.Controllers
             {
                 User user = await _context.Users
                     .Include(u => u.Role)
-                    .FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+                    .FirstOrDefaultAsync(u => u.Nickname == model.Nickname && u.Password == model.Password);
                 if (user != null)
                 {
                     await Authenticate(user); // аутентификация
 
-                    return Redirect("/api/allPosts");
+                    return Redirect("/allPosts");
                 }
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
 
-            return Redirect("/api/allPosts");
+            return Redirect("/allPosts");
         }
         private async Task Authenticate(User user)
         {
             // создаем один claim
             var claims = new List<Claim>
             {
-                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Nickname),
                 new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role?.Name)
             };
             // создаем объект ClaimsIdentity
@@ -101,7 +111,13 @@ namespace MySite.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index", "Post");
+            return Redirect("/allPosts");
+        }
+
+        [Route("getUser")]
+        public string GetUser()
+        {
+            return User.Identity.Name;
         }
     }
 }

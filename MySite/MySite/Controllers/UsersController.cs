@@ -9,6 +9,7 @@ using MySite.Models;
 
 namespace MySite.Controllers
 {
+    [Route("users")]
     public class UsersController : Controller
     {
         private readonly ApplicationContext _context;
@@ -19,10 +20,11 @@ namespace MySite.Controllers
         }
 
         // GET: Users
-        public async Task<IActionResult> Index()
+        [Route("user/{email}")]
+        public User GetUser(string email)
         {
-            var applicationContext = _context.Users.Include(u => u.Role);
-            return View(await applicationContext.ToListAsync());
+            User user = _context.Users.Where(u => u.Email == email).FirstOrDefault();
+            return user;
         }
 
         // GET: Users/Details/5

@@ -11,7 +11,7 @@
   </PropertyGroup>
   <ItemGroup>
     <File Include="appsettings.Development.json">
-      <publishTime>04/23/2020 17:50:13</publishTime>
+      <publishTime>04/27/2020 04:23:38</publishTime>
     </File>
     <File Include="appsettings.json">
       <publishTime>04/08/2020 20:03:12</publishTime>
@@ -200,25 +200,25 @@
       <publishTime>09/20/2019 22:25:54</publishTime>
     </File>
     <File Include="MySite.deps.json">
-      <publishTime>04/26/2020 03:17:23</publishTime>
+      <publishTime>04/29/2020 23:01:16</publishTime>
     </File>
     <File Include="MySite.dll">
-      <publishTime>04/26/2020 03:17:20</publishTime>
+      <publishTime>04/29/2020 22:37:38</publishTime>
     </File>
     <File Include="MySite.exe">
-      <publishTime>04/26/2020 03:17:20</publishTime>
+      <publishTime>04/29/2020 22:37:38</publishTime>
     </File>
     <File Include="MySite.pdb">
-      <publishTime>04/26/2020 03:17:20</publishTime>
+      <publishTime>04/29/2020 22:37:38</publishTime>
     </File>
     <File Include="MySite.runtimeconfig.json">
       <publishTime>04/22/2020 23:56:39</publishTime>
     </File>
     <File Include="MySite.Views.dll">
-      <publishTime>04/26/2020 03:17:22</publishTime>
+      <publishTime>04/29/2020 22:37:39</publishTime>
     </File>
     <File Include="MySite.Views.pdb">
-      <publishTime>04/26/2020 03:17:22</publishTime>
+      <publishTime>04/29/2020 22:37:39</publishTime>
     </File>
     <File Include="Newtonsoft.Json.dll">
       <publishTime>01/22/2019 17:16:39</publishTime>
@@ -335,7 +335,7 @@
       <publishTime>08/14/2019 23:20:54</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>04/26/2020 03:17:23</publishTime>
+      <publishTime>04/29/2020 23:01:16</publishTime>
     </File>
     <File Include="wwwroot/bg.jpg">
       <publishTime>04/15/2020 17:59:33</publishTime>
@@ -551,7 +551,7 @@
       <publishTime>03/24/2020 18:58:44</publishTime>
     </File>
     <File Include="wwwroot/css/MyStyles.css">
-      <publishTime>04/24/2020 23:50:02</publishTime>
+      <publishTime>04/29/2020 22:33:02</publishTime>
     </File>
     <File Include="wwwroot/css/site.css">
       <publishTime>04/07/2020 23:43:02</publishTime>
@@ -563,7 +563,7 @@
       <publishTime>04/23/2020 01:17:47</publishTime>
     </File>
     <File Include="wwwroot/js/site.js">
-      <publishTime>04/14/2020 22:15:37</publishTime>
+      <publishTime>04/29/2020 17:42:55</publishTime>
     </File>
     <File Include="wwwroot/lib/bootstrap/dist/css/bootstrap-grid.css">
       <publishTime>04/01/2020 14:50:37</publishTime>

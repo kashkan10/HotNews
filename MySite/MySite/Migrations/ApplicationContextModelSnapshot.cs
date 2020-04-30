@@ -111,6 +111,9 @@ namespace MySite.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Nickname")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
@@ -128,6 +131,7 @@ namespace MySite.Migrations
                         {
                             Id = 1,
                             Email = "admin@mail.ru",
+                            Nickname = "kashkan10",
                             Password = "123456",
                             RoleId = 1
                         });

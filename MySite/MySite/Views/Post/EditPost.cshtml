@@ -1,52 +1,50 @@
 ﻿@model MySite.Models.Post
 
 @{
-    ViewData["Title"] = "EditPost";
+    ViewData["Title"] = "HoT News";
 }
 
-<h1>Edit Post</h1>
-<hr />
+    <h2>Изменить новость</h2>
+    <hr />
 
-@using (Html.BeginForm("EditPost", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <input type="hidden" value="@Model.Id" name="Id" />
-    <div>
-        <h2>Title</h2>
-        <p id="Title" name="Title"><input class="title-input" name="Title" value="@Model.Title" /></p>
-    </div>
-
-    <div>
-        <h2>Time</h2>
-        <p name="Date"><input name="Date" value="@Model.Date" /></p>
-    </div>
-
-    <div>
-        <h2>Text</h2>
-        <textarea id="Text" name="Text">@Model.Text</textarea>
-    </div>
-
-    @if (Model.Image != null)
+    @using (Html.BeginForm("EditPost", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-        <img class="img-small" src="data:image/jpg;base64,@Convert.ToBase64String(Model.Image)" />
-    }
-    else
-    {
-        <img class="img-small" src="data:image/jpg;base64," />
+        <input type="hidden" value="@Model.Id" name="Id" />
+        <div>
+            <h3>Title</h3>
+            <p id="Title" name="Title"><input class="title-input" name="Title" value="@Model.Title" /></p>
+        </div>
+        <div>
+            <h3>Time</h3>
+            <p name="Date"><input name="Date" value="@Model.Date" /></p>
+        </div>
+        <div class="sm-margin-bot">
+            <h3>Text</h3>
+            <textarea id="Text" name="Text">@Model.Text</textarea>
+        </div>
+        <div class="sm-margin-bot">
+            <h3>Image</h3>
+            <div>
+                @if (Model.Image != null)
+                {
+                    <img class="img-small" src="data:image/jpg;base64,@Convert.ToBase64String(Model.Image)" />
+                }
+                else
+                {
+                    <img class="img-small" src="data:image/jpg;base64," />
+                }
+            </div>
+            <input name="uploadImage" type="file" />
+        </div>
+        <div class="btn-group-sm">
+            <input class="btn btn-danger" type="submit" value="Сохранить" />
+            <input class="btn btn-danger" type="button" value="Назад" onClick='location.href="/allPosts"'>
+        </div>
     }
 
-    <div>
-        <input name="uploadImage" type="file" />
-    </div>
-
-    <div class="buttons-block">
-        <input class="button-1" type="submit" value="Save" />
-        <input class="button-1" type="button" value="Back" onClick='location.href="/api/allPosts"'>
-    </div>
-}
 
 <script>
     document.addEventListener("DOMContentLoaded", function (event) {
         ClassicEditor.create(document.querySelector('#Text'));
     });
 </script>
-

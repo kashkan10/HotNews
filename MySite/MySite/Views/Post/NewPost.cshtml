@@ -1,36 +1,39 @@
 ﻿@model MySite.Models.Post
 
 @{
-    ViewData["Title"] = "NewPost";
+    ViewData["Title"] = "HoT News";
 }
 
-<h1>New Post</h1>
-<hr />
-@using (Html.BeginForm("NewPost", "Post",
-FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    <div>
-        <h2>Title</h2>
-        <p id="Title" name="Title"><input class="title-input" name="Title" /></p>
-    </div>
 
-    <div>
-        <h2>Time</h2>
-        <p name="Date"><input name="Date" value="@DateTime.Now" /></p>
-    </div>
+    <h2>Добавить новость</h2>
+    <hr />
+    @using (Html.BeginForm("NewPost", "Post",
+        FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div>
+            <h3>Title</h3>
+            <p id="Title" name="Title"><input class="title-input" name="Title" /></p>
+        </div>
 
-    <div>
-        <h2>Text</h2>
-        <textarea id="Text" name="Text"></textarea>
-    </div>
-    <div class="upload-input">
-        <input name="uploadImage" type="file" />
-    </div>
-    <div class="buttons-block">
-        <input class="button-1" type="submit" value="Add" />
-        <input class="button-1" type="button" value="Back" onClick='location.href="/api/allPosts'>
-    </div>
-}
+        <div>
+            <h3>Time</h3>
+            <p name="Date"><input name="Date" value="@DateTime.Now" /></p>
+        </div>
+
+        <div>
+            <h3>Text</h3>
+            <textarea id="Text" name="Text"></textarea>
+        </div>
+        <div class="upload-input">
+            <h3>Image</h3>
+            <input name="uploadImage" type="file" />
+        </div>
+        <div class="btn-group-sm">
+            <input class="btn btn-danger" type="submit" value="Добавить" />
+            <input class="btn btn-danger" type="button" value="Назад" onClick='location.href="/allPosts"'>
+        </div>
+    }
+
 
 
 <script>
